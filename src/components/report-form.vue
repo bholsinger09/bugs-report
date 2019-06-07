@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <form class="debugger-form" @submit.prevent="">
+    <form class="debugger-form" @submit.prevent="getBugs">
       <input class="form-input" type="text" placeholder="enter bugs">
       <button class="submit-button" type="submit">Submit</button>
     </form>
@@ -20,6 +20,15 @@
     computed: {
       message() {
         return ('edit me')
+      }
+
+    },
+    methods: {
+
+      getBugs() {
+
+        this.$store.dispatch("getBugs")
+
       }
 
     },
