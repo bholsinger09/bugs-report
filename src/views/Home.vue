@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
+    <img id="vue-logo" alt="Vue logo" src="../assets/logo.png">
 
     <h1>Welcome to your debugger</h1>
     <reportform />
@@ -22,3 +22,10 @@
     }
   }
 </script>
+
+<style scoped>
+  #vue-logo {
+    height: 5vh;
+    width: 5vw;
+  }
+</style>

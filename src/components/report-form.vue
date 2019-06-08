@@ -2,10 +2,16 @@
   <div>
 
     <form class="debugger-form" @submit.prevent="getBugs">
-      <input class="form-input" type="text" placeholder="enter bugs">
-      <button class="submit-button" type="submit">Submit</button>
+      <p>Reported By:</p>
+      <input class="form-input" type="text" placeholder="enter name">
+      <p>Title :</p>
+      <input class="form-input" type="text" placeholder="Enter Bugs">
+      <p>Enter Description of Bug</p>
+      <input class="form-input" id="description" type="text" placeholder="Description Of Bug">
+
+
     </form>
-    <p>Message is: {{ message }}</p>
+    <button class="submit-button" type="submit">Report</button>
   </div>
 </template>
 
@@ -18,9 +24,7 @@
 
     },
     computed: {
-      message() {
-        return ('edit me')
-      }
+
 
     },
     methods: {
@@ -42,3 +46,18 @@
 
 
 </script>
+
+<style scoped>
+  *p {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  #description {
+    padding: 1rem;
+  }
+
+  .submit-button {
+    margin-top: 2rem;
+  }
+</style>
