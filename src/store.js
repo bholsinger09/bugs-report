@@ -16,15 +16,15 @@ export default new Vuex.Store({
 
   },
   mutations: {
-    setBugs(state, bugs) {
-      state.bugs = bugs
+    setBugs(state, data) {
+      state.bugs = data
     }
 
   },
   actions: {
-    async getBugs({ commit, dispatch }) {
+    async getBugs({ commit, dispatch }, payload) {
       try {
-        let res = await _api.get('')
+        let res = await _api.get('payload')
         console.log(res.data)
         commit('setBugs', res.data)
 

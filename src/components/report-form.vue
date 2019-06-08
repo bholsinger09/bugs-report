@@ -1,7 +1,9 @@
 <template>
   <div>
 
-    <form class="debugger-form" @submit.prevent="getBugs">
+    <form class="bugs" @submit.prevent="getBugs">
+      <p>user name:</p>
+      <input class="form-input" type="text" placeholder="enter username">
       <p>Reported By:</p>
       <input class="form-input" type="text" placeholder="enter name">
       <p>Title :</p>
@@ -11,7 +13,16 @@
 
 
     </form>
-    <button class="submit-button" type="submit">Report</button>
+    <button class="submit-button" type="submit" @submit="getBugs">Report</button>
+
+    <div class="bug-list">
+      <ol class="bugs">
+        <li v-for="bug in bugs" :key="bug.id" ">{{bug.user}}</li>
+        <li v-for=" bug in bugs" :key="bug.id" ">{{bug.creator}}</li>
+        <li v-for=" bug in bugs" :key="bug.id" ">{{bug.title}}</li>
+        <li v-for=" bug in bugs" :key="bug.id" ">{{bug.description}}</li>
+      </ol>
+    </div>
   </div>
 </template>
 
@@ -20,44 +31,37 @@
   export default {
     name: 'reportform',
     data() {
+
       return {};
 
     },
     computed: {
+      bugs() {
+        return this.$store.state.bugs;
+      }
 
 
     },
     methods: {
 
-      getBugs() {
 
-        this.$store.dispatch("getBugs")
 
+      getBugs(bug) {
+
+        this.$store.dispatch(" getBugs", bug)
       }
+    }, props: { msg: String }
+  } </script> <style scoped>
+          *p {
+          padding-left: 2rem;
+          padding-right: 2rem;
+          }
 
-    },
-    props: {
-      msg: String
-    }
+          #description {
+          padding: 1rem;
+          }
 
-
-
-  }
-
-
-</script>
-
-<style scoped>
-  *p {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-
-  #description {
-    padding: 1rem;
-  }
-
-  .submit-button {
-    margin-top: 2rem;
-  }
-</style>
+          .submit-button {
+          margin-top: 2rem;
+          }
+          </style>
