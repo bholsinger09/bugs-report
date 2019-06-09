@@ -16,7 +16,8 @@ export default new Vuex.Store({
   },
   mutations: {
     //results is the data from api
-    setBugs(state, results) {
+    //this updates state with data from api 
+    getBugs(state, results) {
       state.results = results
     }
 
@@ -26,14 +27,22 @@ export default new Vuex.Store({
       try {
         let res = await _api.get('bugs')
         console.log(res.data)
-        commit('setBugs', res.data)
+        commit('getBugs', res.data)
         //commit calls to mutations 
 
       } catch (error) {
         console.error(error)
 
       }
-    }
- }
+    },
+
+    createPost({ commit, dispatch }, payload) {
+      _api.post('bugs', payload)
+        .then(res => {
+          dispatch('getBugs')
+        })
+        .catch(err => console.error(err))
+    },
+  }
 
 })

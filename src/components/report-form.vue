@@ -1,28 +1,21 @@
 <template>
   <div>
 
-    <form class="bugs" @submit.prevent="getBugs">
+    <form class="bugs" @submit.prevent="handleSubmit">
       <p>user name:</p>
-      <input class="form-input" type="text" placeholder="enter username">
+      <input class="form-input" type="text" placeholder="enter username" v-model="user">
       <p>Reported By:</p>
-      <input class="form-input" type="text" placeholder="enter name">
+      <input class="form-input" type="text" placeholder="enter name" v-model="creator">
       <p>Title :</p>
-      <input class="form-input" type="text" placeholder="Enter Bugs">
+      <input class="form-input" type="text" placeholder="Enter Bugs" v-model="title">
       <p>Enter Description of Bug</p>
-      <input class="form-input" id="description" type="text" placeholder="Description Of Bug">
+      <input class="form-input" id="description" type="text" placeholder="Description Of Bug" v-model="description">
 
 
     </form>
-    <button class="submit-button" type="submit" @submit="getBugs">Report</button>
+    <button class="submit-button" type="submit" @submit="handleSubmit">Report</button>
 
-    <!-- <div class="bug-list">
-      <ol class="bugs">
-        <li v-for="bug in bugs" :key="bug.id" ">{{bug.user}}</li>
-        <li v-for=" bug in bugs" :key="bug.id" ">{{bug.creator}}</li>
-        <li v-for=" bug in bugs" :key="bug.id" ">{{bug.title}}</li>
-        <li v-for=" bug in bugs" :key="bug.id" ">{{bug.description}}</li>
-      </ol>
-    </div> -->
+
   </div>
 </template>
 
@@ -32,24 +25,44 @@
     name: 'reportform',
     data() {
 
-      return {};
+      return {
+        //this is binded by v-model 
+        description: "",
+        user: "",
+        creator: "",
+        title: ""
+      };
     },
-    computed: {
+    mounted() {
+      this.$store.dispatch('getBugs')
+    },
+    computed:
+    {
       bugs() {
         return this.$store.state.results;
       }
+    },
 
+    methods:
+    {
+      //thiswill call post method from store 
+      //this will also add data to current empty array on api 
+      handleSubmit() {
+        let data =
+        {
+          closed: false,
+          description: this.description,
+          user: this.user,
+          creator: this.creator,
+          title: this.title
+        }
+        this.$store.dispatch('createPost', data)
+      }
 
     },
-    methods: {
-
-
-
-      getBugs() {
-        this.$store.dispatch("getBugs")
-      }
-    }, props: { msg: String }
-  } </script>
+    props: { msg: String }
+  } 
+</script>
 <style scoped>
   *p {
     padding-left: 2rem;

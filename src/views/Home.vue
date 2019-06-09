@@ -15,6 +15,9 @@
 
   export default {
     name: 'home',
+    mounted() {
+      this.$store.dispatch('getBugs')
+    },
     components: {
 
       reportform
