@@ -10,6 +10,7 @@
   // @ is an alias to /src
 
   import reportList from '@/components/report-list.vue'
+  import bugAddNotes from '@/components/bug-Addnotes.vue'
 
   export default {
     name: 'report-details',
@@ -17,7 +18,8 @@
       this.$store.dispatch('getBugs')
     },
     components: {
-      reportList
+      reportList,
+      bugAddNotes
 
 
     }

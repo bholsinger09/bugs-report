@@ -39,7 +39,7 @@
     computed:
     {
       bugs() {
-        return this.$store.state.results;
+        return this.$store.state.bugs;
       }
     },
 
