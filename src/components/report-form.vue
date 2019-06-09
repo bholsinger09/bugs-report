@@ -15,14 +15,14 @@
     </form>
     <button class="submit-button" type="submit" @submit="getBugs">Report</button>
 
-    <div class="bug-list">
+    <!-- <div class="bug-list">
       <ol class="bugs">
         <li v-for="bug in bugs" :key="bug.id" ">{{bug.user}}</li>
         <li v-for=" bug in bugs" :key="bug.id" ">{{bug.creator}}</li>
         <li v-for=" bug in bugs" :key="bug.id" ">{{bug.title}}</li>
         <li v-for=" bug in bugs" :key="bug.id" ">{{bug.description}}</li>
       </ol>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -37,6 +37,7 @@
     },
     computed: {
       bugs() {
+        debugger
         return this.$store.state.bugs;
       }
 
@@ -46,22 +47,23 @@
 
 
 
-      getBugs(bug) {
+      getBugs() {
 
-        this.$store.dispatch(" getBugs", bug)
+        this.$store.dispatch(" getBugs")
       }
     }, props: { msg: String }
-  } </script> <style scoped>
-          *p {
-          padding-left: 2rem;
-          padding-right: 2rem;
-          }
+  } </script>
+<style scoped>
+  *p {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 
-          #description {
-          padding: 1rem;
-          }
+  #description {
+    padding: 1rem;
+  }
 
-          .submit-button {
-          margin-top: 2rem;
-          }
-          </style>
+  .submit-button {
+    margin-top: 2rem;
+  }
+</style>

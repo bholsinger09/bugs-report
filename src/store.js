@@ -5,14 +5,13 @@ import axios from 'axios'
 Vue.use(Vuex)
 
 let _api = axios.create({
-  baseURL: 'https://bcw-sandbox.herokuapp.com/api/bentest'
+  baseURL: 'https://bcw-sandbox.herokuapp.com/api/ben'
 })
-//http://bcw-sandbox.herokuapp.com/api/jake/logs
-//https://bcw-sandbox.herokuapp.com/api/bentest
+
 
 export default new Vuex.Store({
   state: {
-    bugs: []
+    bugs: {}
 
   },
   mutations: {
@@ -22,9 +21,9 @@ export default new Vuex.Store({
 
   },
   actions: {
-    async getBugs({ commit, dispatch }, payload) {
+    async getBugs({ commit, dispatch }) {
       try {
-        let res = await _api.get('payload')
+        let res = await _api.get('bugs')
         console.log(res.data)
         commit('setBugs', res.data)
 
