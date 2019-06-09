@@ -33,12 +33,10 @@
     data() {
 
       return {};
-
     },
     computed: {
       bugs() {
-        debugger
-        return this.$store.state.bugs;
+        return this.$store.state.results;
       }
 
 
@@ -48,8 +46,7 @@
 
 
       getBugs() {
-
-        this.$store.dispatch(" getBugs")
+        this.$store.dispatch("getBugs")
       }
     }, props: { msg: String }
   } </script>

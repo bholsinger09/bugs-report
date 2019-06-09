@@ -11,12 +11,13 @@ let _api = axios.create({
 
 export default new Vuex.Store({
   state: {
-    bugs: {}
+    results: []
 
   },
   mutations: {
-    setBugs(state, data) {
-      state.bugs = data
+    //results is the data from api
+    setBugs(state, results) {
+      state.results = results
     }
 
   },
@@ -26,13 +27,13 @@ export default new Vuex.Store({
         let res = await _api.get('bugs')
         console.log(res.data)
         commit('setBugs', res.data)
+        //commit calls to mutations 
 
       } catch (error) {
         console.error(error)
 
       }
     }
+ }
 
-
-  }
 })
