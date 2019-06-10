@@ -23,8 +23,8 @@ export default new Vuex.Store({
     setBugs(state, results) {
       state.bugs = results
     },
-    setBug(state, result) {
-      state.bug = result
+    setBug(state, bug) {
+      state.bug = bug
     },
 
     //set notes is where the details of the bug get edited 
@@ -146,7 +146,7 @@ export default new Vuex.Store({
     async getSelectedBugById({ commit, dispatch }, id) {
       let res = await _api.get('bugs/' + id)
       console.log(id)
-      commit('setBug', res.data)
+      commit('setBug', res.data.results)
     },
 
 

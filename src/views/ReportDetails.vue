@@ -6,7 +6,7 @@
           the description should be editable and added as a note -->
     <!-- below the selected bug details needs to be a close button to change 
          the status to closed  -->
-    <!-- <h1>{{bug.title}}</h1> -->
+    <h1>{{selectedBug.title}}</h1>
 
     <!-- here needs to be where we can add notes-->
     <bugAddNotes />
@@ -32,7 +32,10 @@
     computed: {
       selectedBug() {
 
+
         return this.$store.state.bug;
+
+
 
       }
     },
