@@ -14,7 +14,7 @@ export default new Vuex.Store({
   state: {
     bugs: [],
     bug: {},
-    notes: {}
+    notes: []
 
   },
   mutations: {
@@ -23,9 +23,10 @@ export default new Vuex.Store({
     setBugs(state, results) {
       state.bugs = results
     },
-    setBug(state, id) {
-      state.bug = id
+    setBug(state, result) {
+      state.bug = result
     },
+
     //set notes is where the details of the bug get edited 
     setNotes(state, results) {
       state.notes = results
@@ -140,6 +141,12 @@ export default new Vuex.Store({
     setBugById({ commit, dispatch }, id) {
       console.log(id)
       commit("setBug", id)
+    },
+
+    async getSelectedBugById({ commit, dispatch }, id) {
+      let res = await _api.get('bugs/' + id)
+      console.log(id)
+      commit('setBug', res.data)
     },
 
 

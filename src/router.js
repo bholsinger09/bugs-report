@@ -18,6 +18,7 @@ export default new Router({
     {
       path: '/reportDetails/:id',
       name: 'report-details',
+      props: true,
       component: ReportDetails
     }
   ]

@@ -14,13 +14,13 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-6 card" v-for="bug in bugs" :key="bugs._id" @click="selectBug(bug._id)"
-        :class="{selected: bug._id == selectedbug}">
-        <h4>Title: {{bug.title}}</h4>
-        <p>User: {{bug.user}}</p>
-        <p>creator: {{bug.creator}}</p>
-        <p>bug description: {{bug.description}}</p>
-
+      <div class="col-6 card" v-for="bug in bugs" :key="bugs._id">
+        <router-link :to="{ name: 'report-details', params: { id: bug._id }}" :class="{selected: bug._id==selectedbug}">
+          <h4>Title: {{bug.title}}</h4>
+          <p>User: {{bug.user}}</p>
+          <p>creator: {{bug.creator}}</p>
+          <p>bug description: {{bug.description}}</p>
+        </router-link>
       </div>
       <div class="col-6">
 
