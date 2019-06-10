@@ -4,6 +4,9 @@
 
     <h1>Welcome to your debugger</h1>
     <reportform />
+    <div v-show="bugs"></div>
+
+    
   </div>
 
 </template>
@@ -17,6 +20,12 @@
     name: 'home',
     mounted() {
       this.$store.dispatch('getBugs')
+    },
+    computed:{
+      bugs(){
+        return this.$store.state.bugs;
+      }
+
     },
     components: {
 

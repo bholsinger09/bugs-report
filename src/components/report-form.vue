@@ -13,6 +13,8 @@
       <button class="submit-button" type="submit" @submit="handleSubmit">Report</button>
 
     </form>
+
+
     
 
 
@@ -48,7 +50,7 @@
       //thiswill call post method from store 
       //this will also add data to current empty array on api 
       handleSubmit() {
-        let data =
+        let payload =
         {
           closed: false,
           description: this.description,
@@ -56,7 +58,7 @@
           creator: this.creator,
           title: this.title
         }
-        this.$store.dispatch('createPost', data)
+        this.$store.dispatch('createPost', payload)
         
       }
 

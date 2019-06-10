@@ -115,7 +115,7 @@ export default new Vuex.Store({
 
    async createPost({ dispatch }, payload) {
     try {
-      let res = await _api.post('bugs')
+      let res = await _api.post('bugs', payload)
       dispatch('getBugs')
       
     } catch (error) {
