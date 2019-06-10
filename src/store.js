@@ -137,6 +137,11 @@ export default new Vuex.Store({
 
     },
 
+    setBugById({ commit, dispatch }, id) {
+      console.log(id)
+      commit("setBug", id)
+    },
+
 
 
 

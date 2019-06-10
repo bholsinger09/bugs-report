@@ -15,7 +15,7 @@
     </form>
 
 
-    
+
 
 
   </div>
@@ -59,11 +59,15 @@
           title: this.title
         }
         this.$store.dispatch('createPost', data)
-        
+        this.description = ""
+        this.user = ""
+        this.creator = ""
+        this.title = ""
+
       }
 
     },
- 
+
   } 
 </script>
 <style scoped>

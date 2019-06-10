@@ -1,12 +1,34 @@
 <template>
   <div class="home">
-    <img id="vue-logo" alt="Vue logo" src="../assets/logo.png">
+    <div class="container">
 
-    <h1>Welcome to your debugger</h1>
-    <reportform />
-    <div v-show="bugs"></div>
+      <img id="vue-logo" alt="Vue logo" src="../assets/logo.png">
 
-    
+
+      <header>
+        <h1>Welcome to your debugger</h1>
+      </header>
+
+      <div class="row-12">
+        <div class="col" <reportform />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6 card" v-for="bug in bugs" :key="bugs._id" @click="selectBug(bug._id)"
+        :class="{selected: bug._id == selectedbug}">
+        <h4>Title: {{bug.title}}</h4>
+        <p>User: {{bug.user}}</p>
+        <p>creator: {{bug.creator}}</p>
+        <p>bug description: {{bug.description}}</p>
+
+      </div>
+      <div class="col-6">
+
+      </div>
+
+    </div>
+  </div>
+
   </div>
 
 </template>
@@ -21,9 +43,12 @@
     mounted() {
       this.$store.dispatch('getBugs')
     },
-    computed:{
-      bugs(){
+    computed: {
+      bugs() {
         return this.$store.state.bugs;
+      },
+      selectedbug() {
+        return this.$store.state.bug;
       }
 
     },
@@ -31,7 +56,14 @@
 
       reportform
 
+    },
+    methods: {
+      selectBug(id) {
+        this.$store.dispatch("setBugById", id);
+      }
     }
+
+
   }
 </script>
 
@@ -39,5 +71,13 @@
   #vue-logo {
     height: 5vh;
     width: 5vw;
+  }
+
+  .card:hover {
+    border: 2px solid blue;
+  }
+
+  .selected {
+    border: 3px solid green;
   }
 </style>
