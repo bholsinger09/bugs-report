@@ -10,10 +10,10 @@
       <input class="form-input" type="text" placeholder="Enter Bugs" v-model="title">
       <p>Enter Description of Bug</p>
       <input class="form-input" id="description" type="text" placeholder="Description Of Bug" v-model="description">
-
+      <button class="submit-button" type="submit" @submit="handleSubmit">Report</button>
 
     </form>
-    <button class="submit-button" type="submit" @submit="handleSubmit">Report</button>
+    
 
 
   </div>
@@ -57,10 +57,11 @@
           title: this.title
         }
         this.$store.dispatch('createPost', data)
+        
       }
 
     },
-    props: { msg: String }
+ 
   } 
 </script>
 <style scoped>

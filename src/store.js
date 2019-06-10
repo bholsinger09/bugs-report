@@ -89,10 +89,10 @@ export default new Vuex.Store({
     //post request below: 
     //payload is data pasted from components
 
-     async createPost({ dispatch }, payload) {
+     async createPost({ commit }, payload) {
        try {
          let res = await _api.post('bugs')
-         dispatch('getBugs')
+         commit('setBugs')
          
        } catch (error) {
          console.error(error)
