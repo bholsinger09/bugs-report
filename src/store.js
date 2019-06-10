@@ -13,8 +13,8 @@ let _api = axios.create({
 export default new Vuex.Store({
   state: {
     bugs: [],
-    bug:{},
-    notes:{}
+    bug: {},
+    notes: {}
 
   },
   mutations: {
@@ -27,11 +27,11 @@ export default new Vuex.Store({
       state.bug = id
     },
     //set notes is where the details of the bug get edited 
-    setNotes(state,results){
+    setNotes(state, results) {
       state.notes = results
     }
-    
-    
+
+
 
   },
   actions: {
@@ -45,7 +45,7 @@ export default new Vuex.Store({
 
     //get request below: 
 
-    async getBugs({ commit}) {
+    async getBugs({ commit }) {
       try {
         let res = await _api.get('bugs')
         console.log(res.data.results)
@@ -57,8 +57,8 @@ export default new Vuex.Store({
 
       }
     },
-    
-    async getBugById({ commit}, id) {
+
+    async getBugById({ commit }, id) {
       try {
         let res = await _api.get('bugs/:id')
         console.log(res.data.results)
@@ -71,7 +71,7 @@ export default new Vuex.Store({
       }
     },
 
-    async getBugByIdNotes({ commit}, id) {
+    async getBugByIdNotes({ commit }, id) {
       try {
         let res = await _api.get('bugs/:id/notes')
         console.log(res.data.results)
@@ -89,53 +89,53 @@ export default new Vuex.Store({
     //post request below: 
     //payload is data pasted from components
 
-     async createPost({ commit }, payload) {
-       try {
-         let res = await _api.post('bugs')
-         commit('setBugs')
-         
-       } catch (error) {
-         console.error(error)
-         
-       }
-      
+    async createPost({ commit }, payload) {
+      try {
+        let res = await _api.post('bugs', payload)
+        commit('setBugs')
+
+      } catch (error) {
+        console.error(error)
+
+      }
+
     },
 
     async createNotesbyId({ dispatch }, payload) {
       try {
         let res = await _api.post('bugs/:id/notes')
         dispatch('getBugs')
-        
+
       } catch (error) {
         console.error(error)
-        
+
       }
-     
-   },
 
-   async createPost({ dispatch }, payload) {
-    try {
-      let res = await _api.post('bugs', payload)
-      dispatch('getBugs')
-      
-    } catch (error) {
-      console.error(error)
-      
-    }
-   
- },
+    },
 
- async editPost({ commit}, payload) {
-  try {
-    let res = await _api.put('bugs/'+ payload.id, payload)
-    commit('setNotes', res.data.results)
-    
-  } catch (error) {
-    console.error(error)
-    
-  }
- 
-},
+    async createPost({ dispatch }, payload) {
+      try {
+        let res = await _api.post('bugs', payload)
+        dispatch('getBugs')
+
+      } catch (error) {
+        console.error(error)
+
+      }
+
+    },
+
+    async editPost({ commit }, payload) {
+      try {
+        let res = await _api.put('bugs/' + payload.id, payload)
+        commit('setNotes', res.data.results)
+
+      } catch (error) {
+        console.error(error)
+
+      }
+
+    },
 
 
 
