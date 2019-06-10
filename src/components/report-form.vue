@@ -50,7 +50,7 @@
       //thiswill call post method from store 
       //this will also add data to current empty array on api 
       handleSubmit() {
-        let payload =
+        let data =
         {
           closed: false,
           description: this.description,
@@ -58,7 +58,7 @@
           creator: this.creator,
           title: this.title
         }
-        this.$store.dispatch('createPost', payload)
+        this.$store.dispatch('createPost', data)
         
       }
 
