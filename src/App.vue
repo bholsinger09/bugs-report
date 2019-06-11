@@ -17,7 +17,10 @@
     color: #2c3e50;
   }
 
+body{
+  background-color: black
 
+}
 
   #nav {
     padding: 10%;

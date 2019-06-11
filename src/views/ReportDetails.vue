@@ -1,12 +1,21 @@
 <template>
   <div class="report-list">
-    <h1>List of bugs below</h1>
+    <h1>Your selected bug :</h1>
     <!-- there should be the selected bug details here-->
     <!-- there needs to be a form with the description of the bug
           the description should be editable and added as a note -->
     <!-- below the selected bug details needs to be a close button to change 
          the status to closed  -->
-    <h1>{{selectedBug.title}}</h1>
+    <div class="row">
+      <div class="col-12">
+        <h5>Bug Title: {{selectedBug.title}}</h5>
+        <h5>Bug creator: {{selectedBug.creator}}</h5>
+        <h5>Bug user: {{selectedBug.user}}</h5>
+        <h5>Bug description: {{selectedBug.description}}</h5>
+      </div>
+      
+    </div>
+    
 
     <!-- here needs to be where we can add notes-->
     <bugAddNotes />
@@ -52,5 +61,17 @@
 </script>
 
 <style scoped>
+
+.report-list {
+  background-color: black
+}
+
+ h1{
+   margin-bottom: 2em;
+   color:red
+ }
+ h5{
+   color:lightblue
+ }
 
 </style>

@@ -71,9 +71,9 @@
   } 
 </script>
 <style scoped>
-  *p {
-    padding-left: 2rem;
-    padding-right: 2rem;
+  p {
+   color: red
+    
   }
 
   #description {
@@ -82,5 +82,6 @@
 
   .submit-button {
     margin-top: 2rem;
+    margin-left: 2rem;
   }
 </style>

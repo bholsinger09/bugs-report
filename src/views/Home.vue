@@ -10,16 +10,17 @@
       </header>
 
       <div class="row-12">
-        <div class="col" <reportform />
+        <div class="col">
+           <reportform />
       </div>
     </div>
     <div class="row">
-      <div class="col-6 card" v-for="bug in bugs" :key="bugs._id">
+      <div class="col-6 card" v-for="bug in bugs" :key ="bugs._id">
         <router-link :to="{ name: 'report-details', params: { id: bug._id }}" :class="{selected: bug._id==selectedbug}">
-          <h4>Title: {{bug.title}}</h4>
-          <p>User: {{bug.user}}</p>
-          <p>creator: {{bug.creator}}</p>
-          <p>bug description: {{bug.description}}</p>
+          <h4 class="form-text">Title: {{bug.title}}</h4>
+          <p class="form-text" >User: {{bug.user}}</p>
+          <p class="form-text" >creator: {{bug.creator}}</p>
+          <p class="form-text" >bug description: {{bug.description}}</p>
         </router-link>
       </div>
       <div class="col-6">
@@ -68,6 +69,17 @@
 </script>
 
 <style scoped>
+.form-text{
+  color:royalblue;
+ 
+}
+.card{
+  background-color: black
+}
+ header{
+   color: red
+ }
+
   #vue-logo {
     height: 5vh;
     width: 5vw;
