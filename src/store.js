@@ -14,7 +14,8 @@ export default new Vuex.Store({
   state: {
     bugs: [],
     bug: {},
-    notes: []
+    notes: [],
+    note:{}
 
   },
   mutations: {
@@ -58,6 +59,10 @@ export default new Vuex.Store({
 
       }
     },
+
+    
+
+
 
     async getBugById({ commit }, id) {
       try {
@@ -149,6 +154,33 @@ export default new Vuex.Store({
       commit('setBug', res.data.results)
     },
 
+    //actions for notes below:
+
+
+    async createNote({ dispatch }, payload) {
+      try {
+        let res = await _api.post('bugs/' + payload.id + "/notes", payload.data)
+        dispatch('getNotes')
+
+      } catch (error) {
+        console.error(error)
+
+      }
+
+    },
+
+    async getNotes({ commit }, id) {
+      try {
+        let res = await _api.get('Bugs/' + id + '/notes')
+        console.log(res.data.results)
+        commit('setNotes', res.data.results)
+        //commit calls to mutations 
+
+      } catch (error) {
+        console.error(error)
+
+      }
+    },
 
 
 

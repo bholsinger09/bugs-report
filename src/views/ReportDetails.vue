@@ -16,15 +16,42 @@
       </div>
     </div>
 
-    <button class= "btn btn-success">Add Notes</button>
+    <button class="btn btn-success" @click=submitNote>Add Notes</button>
+    <button class="btn btn-warning">Close Bug</button>
 
-    
-    
+    <div class=card>
+      <form class="notes" @submit.prevent="submitNote">
+        <p>user name:</p>
+        <input class="form-input" type="text" placeholder="enter username" v-model="user">
+        <p>Note Reported By:</p>
+        <input class="form-input" type="text" placeholder="enter name" v-model="creator">
 
-    <!-- here needs to be where we can add notes-->
-   
+        <p>Add note description</p>
+        <input class="form-input" id="description" type="text" placeholder="Description Of Bug" v-model="content">
 
-  </div>
+      </form>
+
+      <div class="row">
+        <div class="col-6 card" v-for="note in notes" :key="notes._id">
+
+
+          <p class="form-text">User: {{note.user}}</p>
+          <p class="form-text">creator: {{note.creator}}</p>
+          <p class="form-text">bug description: {{note.content}}</p>
+
+        </div>
+        <div class="col-6">
+
+        </div>
+
+
+      </div>
+
+
+
+
+
+    </div>
 
 </template>
 
@@ -32,48 +59,67 @@
   // @ is an alias to /src
 
 
-  
+
 
   export default {
     name: 'report-details',
     props: ["id"],
     mounted() {
       this.$store.dispatch("getSelectedBugById", this.id);
-
+      this.$store.dispatch('getNotes')
 
     },
     computed: {
       selectedBug() {
-
-
         return this.$store.state.bug;
-
-
-
+      },
+      currentNote() {
+        return this.$store.state.note;
       }
     },
+
     data() {
-      return {}
+      return {
+        content: "",
+        bug: this.id,
+        creator: "",
+        user: ""
+      }
     },
-    
-  }
+    methods: {
+      submitNote() {
+        let data =
+        {
+          content: this.content,
+          user: this.user,
+          creator: this.creator,
+          bug: this.bug
+        }
+        this.$store.dispatch('createNote', data)
+        this.content = ""
+        this.user = ""
+        this.creator = ""
+
+      }
+
+    }
 </script>
 
 <style scoped>
+  .report-list {
+    background-color: black
+  }
 
-.report-list {
-  background-color: black
-}
+  h1 {
+    margin-bottom: 2em;
+    color: red
+  }
 
- h1{
-   margin-bottom: 2em;
-   color:red
- }
- em{
-   color:red
- }
- h5{
-   color:lightblue
- }
+  em {
+    color: red
+  }
 
+  h5 {
+    color: lightblue
+  }
 </style>
