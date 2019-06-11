@@ -12,13 +12,17 @@
         <h5>Bug creator: {{selectedBug.creator}}</h5>
         <h5>Bug user: {{selectedBug.user}}</h5>
         <h5>Bug description: {{selectedBug.description}}</h5>
+        <h5>Bug Completed: <em>{{selectedBug.closed}}</em></h5>
       </div>
-      
     </div>
+
+    <button class= "btn btn-success">Add Notes</button>
+
+    
     
 
     <!-- here needs to be where we can add notes-->
-    <bugAddNotes />
+   
 
   </div>
 
@@ -28,7 +32,7 @@
   // @ is an alias to /src
 
 
-  import bugAddNotes from '@/components/bug-Addnotes.vue'
+  
 
   export default {
     name: 'report-details',
@@ -51,12 +55,7 @@
     data() {
       return {}
     },
-    components: {
-
-      bugAddNotes
-
-
-    }
+    
   }
 </script>
 
@@ -68,6 +67,9 @@
 
  h1{
    margin-bottom: 2em;
+   color:red
+ }
+ em{
    color:red
  }
  h5{
