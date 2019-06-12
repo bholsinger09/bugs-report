@@ -16,8 +16,8 @@
       </div>
     </div>
 
-    <button class="btn btn-success" @click=submitNote>Add Notes</button>
-    <button v-if="!selectedBug.closed" class="btn btn-warning">Close Bug</button>
+    <button type="submit" class="btn btn-success" @click="submitNote">Add Notes</button>
+    <button type="submit" v-if="!selectedBug.closed" class="btn btn-warning" @click="closeBug">Close Bug</button>
 
     <div class=card>
       <form v-if="!selectedBug.closed" class="notes" @submit.prevent="submitNote">
@@ -112,7 +112,7 @@
         this.$store.dispatch('deleteNote', note)
       },
       closeBug() {
-        this.$store.dispatch('editBug', this.bug)
+        this.$store.dispatch('editBug', this.id)
 
       }
 

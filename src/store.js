@@ -68,9 +68,9 @@ export default new Vuex.Store({
 
     async getBugById({ commit }, id) {
       try {
-        let res = await _api.get('bugs/:id')
+        let res = await _api.get('bugs/' + id)
         console.log(res.data.results)
-        commit('setBugs', res.data.results)
+        commit('setBug', res.data.results)
         //commit calls to mutations  when promise is finished
 
       } catch (error) {
@@ -112,10 +112,10 @@ export default new Vuex.Store({
 
 
 
-    async editBug({ commit }, bug) {
+    async editBug({ dispatch }, id) {
       try {
-        let res = await _api.delete('bugs/' + bug.id)
-        commit('getBugs', bug.)
+        let res = await _api.delete('bugs/' + id)
+        dispatch('getBugById', id)
 
       } catch (error) {
         console.error(error)

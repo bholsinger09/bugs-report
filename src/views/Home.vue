@@ -11,24 +11,26 @@
 
       <div class="row-12">
         <div class="col">
-           <reportform />
+          <reportform />
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-6 card" v-for="bug in bugs" :key ="bugs._id">
-        <router-link :to="{ name: 'report-details', params: { id: bug._id }}" :class="{selected: bug._id==selectedbug}">
-          <h4 class="form-text">Title: {{bug.title}}</h4>
-          <p class="form-text" >User: {{bug.user}}</p>
-          <p class="form-text" >creator: {{bug.creator}}</p>
-          <p class="form-text" >bug description: {{bug.description}}</p>
-        </router-link>
-      </div>
-      <div class="col-6">
+      <div class="row">
+        <div class="col-6 card" v-for="bug in bugs" :key="bugs._id">
+          <router-link :to="{ name: 'report-details', params: { id: bug._id }}"
+            :class="{selected: bug._id==selectedbug}">
+            <h4 class="form-text">Title: {{bug.title}}</h4>
+            <p class="form-text">User: {{bug.user}}</p>
+            <p class="form-text">creator: {{bug.creator}}</p>
+            <p class="form-text">bug description: {{bug.description}}</p>
+            <p class="form-text">bug completed status: {{bug.closed}}</p>
+          </router-link>
+        </div>
+        <div class="col-6">
+
+        </div>
 
       </div>
-
     </div>
-  </div>
 
   </div>
 
@@ -69,16 +71,18 @@
 </script>
 
 <style scoped>
-.form-text{
-  color:royalblue;
- 
-}
-.card{
-  background-color: black
-}
- header{
-   color: red
- }
+  .form-text {
+    color: royalblue;
+
+  }
+
+  .card {
+    background-color: black
+  }
+
+  header {
+    color: red
+  }
 
   #vue-logo {
     height: 5vh;
