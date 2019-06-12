@@ -38,6 +38,7 @@
           <p class="form-text">User: {{note.user}}</p>
           <p class="form-text">creator: {{note.creator}}</p>
           <p class="form-text">bug description: {{note.content}}</p>
+          <button class="btn btn-warning" @click="deleteNote">Remove Comment</button>
 
         </div>
         <div class="col-6">
@@ -53,6 +54,8 @@
 
     </div>
 
+  </div>
+
 </template>
 
 <script>
@@ -63,18 +66,19 @@
 
   export default {
     name: 'report-details',
-    props: ["id"],
+    props: ["id", "noteId"],
     mounted() {
       this.$store.dispatch("getSelectedBugById", this.id);
-      this.$store.dispatch('getNotes')
+      this.$store.dispatch('getNotes', this.id)
 
     },
     computed: {
       selectedBug() {
         return this.$store.state.bug;
       },
-      currentNote() {
-        return this.$store.state.note;
+      notes() {
+
+        return this.$store.state.notes;
       }
     },
 
@@ -87,6 +91,7 @@
       }
     },
     methods: {
+
       submitNote() {
         let data =
         {
@@ -95,14 +100,27 @@
           creator: this.creator,
           bug: this.bug
         }
+
         this.$store.dispatch('createNote', data)
         this.content = ""
         this.user = ""
         this.creator = ""
 
+      },
+      deleteNote() {
+        let data =
+        {
+          bug: this.bug,
+          bugNote: this.noteId
+        }
+        this.$store.dispatch('deleteNote', data)
+
+
       }
 
     }
+
+  }
 </script>
 
 <style scoped>

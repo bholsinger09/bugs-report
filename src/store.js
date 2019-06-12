@@ -15,7 +15,7 @@ export default new Vuex.Store({
     bugs: [],
     bug: {},
     notes: [],
-    note:{}
+    note: {}
 
   },
   mutations: {
@@ -32,6 +32,7 @@ export default new Vuex.Store({
     setNotes(state, results) {
       state.notes = results
     }
+
 
 
 
@@ -60,7 +61,7 @@ export default new Vuex.Store({
       }
     },
 
-    
+
 
 
 
@@ -107,29 +108,8 @@ export default new Vuex.Store({
 
     },
 
-    async createNotesbyId({ dispatch }, payload) {
-      try {
-        let res = await _api.post('bugs/:id/notes')
-        dispatch('getBugs')
 
-      } catch (error) {
-        console.error(error)
 
-      }
-
-    },
-
-    async createPost({ dispatch }, payload) {
-      try {
-        let res = await _api.post('bugs', payload)
-        dispatch('getBugs')
-
-      } catch (error) {
-        console.error(error)
-
-      }
-
-    },
 
     async editPost({ commit }, payload) {
       try {
@@ -155,24 +135,10 @@ export default new Vuex.Store({
     },
 
     //actions for notes below:
-
-
-    async createNote({ dispatch }, payload) {
+    async getNotes({ commit }, payload) {
       try {
-        let res = await _api.post('bugs/' + payload.id + "/notes", payload.data)
-        dispatch('getNotes')
-
-      } catch (error) {
-        console.error(error)
-
-      }
-
-    },
-
-    async getNotes({ commit }, id) {
-      try {
-        let res = await _api.get('Bugs/' + id + '/notes')
-        console.log(res.data.results)
+        let res = await _api.get('bugs/' + payload + '/notes')
+        console.log(payload)
         commit('setNotes', res.data.results)
         //commit calls to mutations 
 
@@ -181,6 +147,32 @@ export default new Vuex.Store({
 
       }
     },
+
+    async createNote({ dispatch }, payload) {
+      try {
+        let res = await _api.post('bugs/' + payload.bug + "/notes", payload)
+        dispatch('getNotes', payload.bug)
+
+      } catch (error) {
+        console.error(error)
+
+      }
+
+    },
+
+    async deleteNote({ dispatch }, payload) {
+      try {
+        let res = await _api.delete('bugs/' + payload.bug + "/notes/" + payload.noteId)
+        dispatch('getNotes', payload.noteId)
+
+      } catch (error) {
+        console.error(error)
+
+      }
+
+    }
+
+
 
 
 
