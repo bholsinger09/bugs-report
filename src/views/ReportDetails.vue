@@ -66,7 +66,7 @@
 
   export default {
     name: 'report-details',
-    props: ["id", "noteId"],
+    props: ["id"],
     mounted() {
       this.$store.dispatch("getSelectedBugById", this.id);
       this.$store.dispatch('getNotes', this.id)
@@ -107,15 +107,13 @@
         this.creator = ""
 
       },
-      deleteNote() {
-        let data =
-        {
-          bug: this.bug,
-          bugNote: this.noteId
+      deleteNote(id, cid) {
+        let noteData = {
+          id: id,
+          cid: cid
+
         }
-        this.$store.dispatch('deleteNote', data)
-
-
+        this.$store.dispatch('deleteNote', noteData)
       }
 
     }

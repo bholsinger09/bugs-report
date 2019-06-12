@@ -22,12 +22,12 @@ export default new Router({
       component: ReportDetails
     },
 
-    {
-      path: '/reportDetails/:id/notes/:noteId',
-      name: 'bug-notes',
-      props: true,
-      component: ReportDetails
-    }
+    // {
+    //   path: '/reportDetails/:id/notes/:noteId',
+    //   name: 'bug-notes',
+    //   props: true,
+    //   component: ReportDetails
+    // }
 
 
 

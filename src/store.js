@@ -160,10 +160,10 @@ export default new Vuex.Store({
 
     },
 
-    async deleteNote({ dispatch }, payload) {
+    async deleteNote({ dispatch }, id) {
       try {
-        let res = await _api.delete('bugs/' + payload.bug + "/notes/" + payload.noteId)
-        dispatch('getNotes', payload.noteId)
+        let res = await _api.delete('bugs/' + id.id + "/notes/" + id.cid)
+        dispatch('getNotes', id.id)
 
       } catch (error) {
         console.error(error)
