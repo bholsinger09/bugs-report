@@ -112,10 +112,10 @@ export default new Vuex.Store({
 
 
 
-    async editPost({ commit }, payload) {
+    async editBug({ commit }, bug) {
       try {
-        let res = await _api.put('bugs/' + payload.id, payload)
-        commit('setNotes', res.data.results)
+        let res = await _api.delete('bugs/' + bug.id)
+        commit('getBugs', bug.)
 
       } catch (error) {
         console.error(error)

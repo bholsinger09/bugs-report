@@ -14,10 +14,6 @@
 
     </form>
 
-
-
-
-
   </div>
 </template>
 
@@ -72,8 +68,7 @@
 </script>
 <style scoped>
   p {
-   color: red
-    
+    color: red
   }
 
   #description {

@@ -17,10 +17,10 @@
     </div>
 
     <button class="btn btn-success" @click=submitNote>Add Notes</button>
-    <button class="btn btn-warning">Close Bug</button>
+    <button v-if="!selectedBug.closed" class="btn btn-warning">Close Bug</button>
 
     <div class=card>
-      <form class="notes" @submit.prevent="submitNote">
+      <form v-if="!selectedBug.closed" class="notes" @submit.prevent="submitNote">
         <p>user name:</p>
         <input class="form-input" type="text" placeholder="enter username" v-model="user">
         <p>Note Reported By:</p>
@@ -110,6 +110,10 @@
       deleteNote(note) {
 
         this.$store.dispatch('deleteNote', note)
+      },
+      closeBug() {
+        this.$store.dispatch('editBug', this.bug)
+
       }
 
     }
