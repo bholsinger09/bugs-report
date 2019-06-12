@@ -38,7 +38,7 @@
           <p class="form-text">User: {{note.user}}</p>
           <p class="form-text">creator: {{note.creator}}</p>
           <p class="form-text">bug description: {{note.content}}</p>
-          <button class="btn btn-warning" @click="deleteNote">Remove Comment</button>
+          <button class="btn btn-warning" @click="deleteNote(note)">Remove Comment</button>
 
         </div>
         <div class="col-6">
@@ -107,13 +107,9 @@
         this.creator = ""
 
       },
-      deleteNote(id, cid) {
-        let noteData = {
-          id: id,
-          cid: cid
+      deleteNote(note) {
 
-        }
-        this.$store.dispatch('deleteNote', noteData)
+        this.$store.dispatch('deleteNote', note)
       }
 
     }

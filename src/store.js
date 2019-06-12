@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import { notEqual } from 'assert';
 
 
 Vue.use(Vuex)
@@ -160,10 +161,10 @@ export default new Vuex.Store({
 
     },
 
-    async deleteNote({ dispatch }, id) {
+    async deleteNote({ dispatch }, note) {
       try {
-        let res = await _api.delete('bugs/' + id.id + "/notes/" + id.cid)
-        dispatch('getNotes', id.id)
+        let res = await _api.delete('bugs/' + note.bug + '/notes/' + note._id)
+        dispatch('getNotes', note.bug)
 
       } catch (error) {
         console.error(error)
